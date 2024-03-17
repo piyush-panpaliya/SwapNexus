@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 import { cn } from "~/lib/utils";
 import { Actor, HttpAgent } from "@dfinity/agent";
 import fetch from "isomorphic-fetch";
-import { idlFactory } from "../../../../.dfx/local/canisters/swap";
+// import { idlFactory } from "../../../../.dfx/local/canisters/swap";
 const host =
   process.env.DFX_NETWORK === "local"
     ? "http://127.0.0.1:4943"
@@ -32,20 +32,20 @@ export default function Home() {
       symbol: "TA",
       quantity: 0,
       from: true,
-      usd: 0.001,
+      usd: 0.0,
     },
     {
       name: "TokenB",
       symbol: "TB",
       quantity: 0,
       from: false,
-      usd: 0.001,
+      usd: 0.0,
     },
   ]);
   const [inp, sInp] = useState("0.0");
   const [ic, setIc] = useState<any>(null);
   const [r, setR] = useState(false);
-  const [balance, setBalance] = useState<any>([100, 60]);
+  const [balance, setBalance] = useState<any>([1000000, 1000000]);
   useEffect(() => {
     // @ts-ignore
     setIc(window.ic.plug);
@@ -75,7 +75,7 @@ export default function Home() {
               //   ]);
               // }}
               variant="outline"
-              className="flex hidden items-center gap-2 rounded-full bg-[#1B1B1B] px-6"
+              className=" hidden items-center gap-2 rounded-full bg-[#1B1B1B] px-6"
             >
               <span>Switch</span>
               <Icons.dollar className="h-4 w-4" />
@@ -224,6 +224,7 @@ export default function Home() {
                 { ...tokens[0], quantity: 0, usd: 0 },
                 { ...tokens[1], quantity: 0, usd: 0 },
               ]);
+              sInp("0.0");
               (async () => {
                 const cid = "br5f7-7uaaa-aaaaa-qaaca-cai";
                 const whitelist = [cid];
@@ -244,7 +245,7 @@ export default function Home() {
                   balance[0] - tokens[0].quantity,
                   balance[1] + tokens[1].quantity,
                 ]);
-              }, 2000);
+              }, 5000);
             }}
           >
             {!transfering ? (

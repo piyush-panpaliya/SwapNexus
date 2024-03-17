@@ -5,7 +5,7 @@
       "type": "motoko"
     },
     "frontend": {
-      "dependencies": ["swap"],
+      "dependencies": ["swap", "token_a", "token_b"],
       "source": ["src/frontend/out"],
       "type": "assets",
       "workspace": "frontend"
