@@ -59,12 +59,17 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className="bg-gradient flex min-h-screen  flex-col items-center justify-center text-foreground">
-        <p className="mb-3 text-6xl font-bold">SwapNexus</p>
-        <p className="mb-6 text-center font-bold text-[#A4A4A4]">
-          Welcome to SwapNexus, your gateway to seamless token swaps across
-          diverse blockchain networks
-        </p>
+      <main className="bg-gradient flex min-h-screen  flex-col items-center justify-center p-8 text-foreground">
+        <div className="flex h-screen flex-col items-center">
+          <p className="mb-3 mt-[10%] w-full text-center text-6xl font-bold">
+            SwapNexus
+          </p>
+          <p className="mb-6 max-w-[40vw] text-center text-xl font-bold text-[#A4A4A4]">
+            Welcome to SwapNexus, your gateway to seamless token swaps across
+            diverse blockchain networks
+          </p>
+          <img src="bg.png" className="w-[50vw]" />
+        </div>
         <div className="flex w-fit flex-col items-center justify-center  gap-8 rounded-[32px] bg-[#121212]/75 px-6 py-6">
           <div className="flex w-full justify-between">
             <Button
@@ -123,7 +128,10 @@ export default function Home() {
               )}
             >
               <div className="flex min-w-[25vw]   items-center  gap-4 rounded-[20px] border border-[#424242] bg-[#212121] px-4 py-6">
-                <div className="h-16 w-16 rounded-full bg-red-400"></div>
+                <img
+                  src="ta.png"
+                  className="h-16 w-16 rounded-full bg-red-400"
+                />
                 <div className="flex flex-col gap-1">
                   <div className=" text-4xl">{tokens[0].symbol}</div>
                   <div className="text-xl text-[#A4A4A4]">{tokens[0].name}</div>
@@ -133,7 +141,10 @@ export default function Home() {
                 <Icons.arrow className=" text-[#A4A4A4]" />
               </div>
               <div className="flex min-w-[25vw]   items-center  gap-4 rounded-[20px] border border-[#424242] bg-[#212121] px-4 py-6">
-                <div className="h-16 w-16 rounded-full bg-green-400"></div>
+                <img
+                  src="tb.png"
+                  className="h-16 w-16 rounded-full bg-green-400"
+                />
                 <div className="flex flex-col gap-1">
                   <div className=" text-4xl">{tokens[1].symbol}</div>
                   <div className="text-xl text-[#A4A4A4]">{tokens[1].name}</div>
@@ -147,7 +158,10 @@ export default function Home() {
               )}
             >
               <div className="flex   items-center gap-4 text-[#A4A4A4]">
-                <div className="h-10 w-10 rounded-full bg-red-400 "></div>
+                <img
+                  src="ta.png"
+                  className="h-10 w-10 rounded-full bg-red-400 "
+                />
                 <div className="flex flex-col gap-1">
                   <Input
                     disabled={!tokens[0].from}
@@ -204,7 +218,10 @@ export default function Home() {
                   />
                   <div className="mr-0.5 w-fit text-xl">{`$${tokens[0].usd.toFixed(4)}`}</div>
                 </div>
-                <div className="h-10 w-10 rounded-full bg-green-400"></div>
+                <img
+                  src="tb.png"
+                  className="h-10 w-10 rounded-full bg-green-400"
+                />
               </div>
             </div>
             <Icons.dollar
@@ -216,7 +233,7 @@ export default function Home() {
           </div>
           <Button
             className="w-full rounded-xl py-6 text-xl font-bold"
-            disabled={transfering}
+            disabled={transfering || !ic?.accountId}
             onClick={() => {
               setTransfering(true);
               console.log(tokens[0].quantity, tokens[1].quantity);
